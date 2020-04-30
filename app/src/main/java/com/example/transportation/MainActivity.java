@@ -96,10 +96,10 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
                                 book.add(bookJSON.getString("author"));
                                 book.add(bookJSON.getString("publication_year"));
                                 book.add(bookJSON.getString("publisher"));
-                                book.add(bookJSON.getString("image_url_s"));
+                                book.add(bookJSON.getString("image_url_l"));
 
                                 list[i]= book;
-                                Log.d("log1",list[i].toString());
+
                             }
                         }catch (JSONException e){
                             e.printStackTrace();
@@ -135,12 +135,22 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Log.d("list_view", list[position].toString());
+        Log.d("log1", "Clicked ... "+list[position].toString());
+        Bundle extras = new Bundle();
 
-        // Intent intent;
-        // intent = new Intent(this, MainActivity.class);
-        // intent.putStringArrayListExtra(USER_HISTORY, list[position].toString());
-        // startActivity(intent);
+        extras.putString("title",list[position].get(0));
+        extras.putString("author",list[position].get(1));
+        extras.putString("year",list[position].get(2));
+        extras.putString("publisher",list[position].get(3));
+        extras.putString("img",list[position].get(4));
+
+
+
+        Log.d("log1", "Passed ... "+ extras.toString());
+        Intent intent;
+        intent = new Intent(this, BookView.class);
+        intent.putExtras(extras);
+        startActivity(intent);
 
     }
 
