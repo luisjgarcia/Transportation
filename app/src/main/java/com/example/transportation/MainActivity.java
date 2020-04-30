@@ -45,6 +45,10 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
     private List<String>[] list = new List[100];
     private ListView bookList;
 
+    // For login/account activities
+    public static boolean isLoggedIn = false;
+    final int LOGIN_REQ = 1000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,13 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
         // Get all the books
         signIn();
+
+        // On the first pass, ensure that we are taken to the login page
+        if(!isLoggedIn) {
+            Intent loginReplyIntent = new Intent(MainActivity.this, LoginScreen.class);
+            startActivityForResult(loginReplyIntent, LOGIN_REQ);
+        }
+
 
 
 
