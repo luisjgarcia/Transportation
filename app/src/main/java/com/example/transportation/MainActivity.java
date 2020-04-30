@@ -9,10 +9,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,17 +29,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     Button btGet;
     TextView lbBook;
     String URL = "https://aqueous-island-97232.herokuapp.com/api/books/";
-    private ArrayList<String> list = new ArrayList<>();
+
+    private List<String>[] list = new List[100];
     private ListView bookList;
 
 
@@ -48,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         // btGet = findViewById(R.id.btGet);
         bookList = findViewById(R.id.bookList);
-
-        list.add("first");
 
         // Get all the books
         signIn();
@@ -85,15 +88,18 @@ public class MainActivity extends AppCompatActivity {
                             // Loop through the array elements
                             for(int i = 0; i < 100; i++){
                                 // Get current json object
-                                JSONObject book = response.getJSONObject(i);
+                                JSONObject bookJSON = response.getJSONObject(i);
+                                List<String> book = new ArrayList<>();
 
                                 // Get the current student (json object) data
-                                String title = book.getString("title");
-                                String author = book.getString("author");
-                                String year = book.getString("publication_year");
+                                book.add(bookJSON.getString("title"));
+                                book.add(bookJSON.getString("author"));
+                                book.add(bookJSON.getString("publication_year"));
+                                book.add(bookJSON.getString("publisher"));
+                                book.add(bookJSON.getString("image_url_s"));
 
-                                list.add(title + " by " + author + " " + year);
-                                Log.d("log1",list.get(i));
+                                list[i]= book;
+                                Log.d("log1",list[i].toString());
                             }
                         }catch (JSONException e){
                             e.printStackTrace();
@@ -112,10 +118,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void refresh(){
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
+        List<String> l1 = new ArrayList<>();
+        // Filters: Display titles only
+        for(int i=0; i <100; i++){
+            l1.add(list[i].get(0));
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, l1);
         bookList.setAdapter(arrayAdapter);
+        bookList.setOnItemClickListener(this);
 
         scrollMyListViewToBottom();
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Log.d("list_view", list[position].toString());
+
+        // Intent intent;
+        // intent = new Intent(this, MainActivity.class);
+        // intent.putStringArrayListExtra(USER_HISTORY, list[position].toString());
+        // startActivity(intent);
 
     }
 
