@@ -61,14 +61,12 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
         // Get all the books
         signIn();
 
+
         // On the first pass, ensure that we are taken to the login page
         if(!isLoggedIn) {
             Intent loginReplyIntent = new Intent(MainActivity.this, LoginScreen.class);
             startActivityForResult(loginReplyIntent, LOGIN_REQ);
         }
-
-
-
 
 
     }
@@ -82,7 +80,6 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
             }
         });
     }
-
 
     public void signIn() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -131,7 +128,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
         List<String> l1 = new ArrayList<>();
         // Filters: Display titles only
-        for(int i=0; i <100; i++){
+        for(int i=0; i < list.length; i++){
             l1.add(list[i].get(0));
         }
 

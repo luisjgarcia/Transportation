@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Local Library</string>
     <string name="menu_refresh">Refresh</string>
-    <string name="menu_fav">WishList</string>
+    <string name="menu_fav">My Books</string>
 </resources>

@@ -8,9 +8,26 @@
 
     <ListView
         android:id="@+id/bookList"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="408dp"
+        android:layout_height="557dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="1dp"
         android:background="#B9C4B9"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available Books"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bookList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.801" />
 </androidx.constraintlayout.widget.ConstraintLayout>
