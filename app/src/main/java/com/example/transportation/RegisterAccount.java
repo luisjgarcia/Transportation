@@ -13,9 +13,20 @@ public class RegisterAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
+        //btSetPassword = findViewById(R.id.btSetPassword);
 
 
         btSetPassword = findViewById(R.id.btSetPassword);
+
+
+        btSetPassword.setOnClickListener((v)->{
+            Intent setPasswordIntent = new Intent(RegisterAccount.this, LoginScreen.class);
+            startActivity(setPasswordIntent);
+            finish();
+            //setResult(RESULT_OK, loginIntent);
+            //MainActivity.isLoggedIn = true;
+            //finish();
+        });
 
     }
 
