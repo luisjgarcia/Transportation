@@ -8,5 +8,9 @@
         android:id="@+id/menu_refresh"
         compat:showAsAction="always"
         android:title="@string/menu_refresh" />
+    <item
+        android:id="@+id/menu_fav"
+        compat:showAsAction="ifRoom"
+        android:title="@string/menu_fav" />
 
 </menu>

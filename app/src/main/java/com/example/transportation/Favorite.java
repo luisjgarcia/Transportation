@@ -2,80 +2,52 @@ package com.example.transportation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
-public class MainActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class Favorite extends AppCompatActivity {
 
-    Button btGet;
-    TextView lbBook;
-    String URL = "https://aqueous-island-97232.herokuapp.com/api/books/";
 
-    private List<String>[] list = new List[100];
+    private List<String>[] list = new List[10];
     private ListView bookList;
-
+    private int trueLength = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_favorite);
 
         // btGet = findViewById(R.id.btGet);
         bookList = findViewById(R.id.bookList);
 
-        // Get all the books
+
         signIn();
 
-
-
-
     }
-
-    private void scrollMyListViewToBottom() {
-        bookList.post(new Runnable() {
-            @Override
-            public void run() {
-                // Select the last row so it will scroll into view...
-                bookList.setSelection(bookList.getCount() - 1);
-            }
-        });
-    }
-
 
     public void signIn() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
+        String URL = "https://aqueous-island-97232.herokuapp.com/api/wishlist/" + getIntent().getStringExtra("user");
 
         // Get me all the books
         JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, URL, null,
@@ -84,21 +56,19 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
                     public void onResponse(JSONArray response) {
                         // Process the JSON
                         try{
-
+                            Log.d("log1","from fav " + response.toString());
                             // Loop through the array elements
-                            for(int i = 0; i < 100; i++){
+                            for(int i = 0; i < response.length(); i++){
                                 // Get current json object
                                 JSONObject bookJSON = response.getJSONObject(i);
                                 List<String> book = new ArrayList<>();
 
                                 // Get the current student (json object) data
                                 book.add(bookJSON.getString("title"));
-                                book.add(bookJSON.getString("author"));
-                                book.add(bookJSON.getString("publication_year"));
-                                book.add(bookJSON.getString("publisher"));
-                                book.add(bookJSON.getString("image_url_l"));
+
 
                                 list[i]= book;
+                                trueLength++;
 
                             }
                         }catch (JSONException e){
@@ -120,41 +90,25 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
         List<String> l1 = new ArrayList<>();
         // Filters: Display titles only
-        for(int i=0; i <100; i++){
+        for(int i=0; i <trueLength; i++){
             l1.add(list[i].get(0));
         }
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1, l1);
         bookList.setAdapter(arrayAdapter);
-        bookList.setOnItemClickListener(this);
 
         scrollMyListViewToBottom();
 
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        Log.d("log1", "Clicked ... "+list[position].toString());
-        Bundle extras = new Bundle();
-
-        extras.putString("title",list[position].get(0));
-        extras.putString("author",list[position].get(1));
-        extras.putString("year",list[position].get(2));
-        extras.putString("publisher",list[position].get(3));
-        extras.putString("img",list[position].get(4));
-
-        // We should be getting it from LogIn intent
-        extras.putString("user", "test@gmail.com");
-
-
-
-        Log.d("log1", "Passed ... "+ extras.toString());
-        Intent intent;
-        intent = new Intent(this, BookView.class);
-        intent.putExtras(extras);
-        startActivity(intent);
-
+    private void scrollMyListViewToBottom() {
+        bookList.post(new Runnable() {
+            @Override
+            public void run() {
+                // Select the last row so it will scroll into view...
+                bookList.setSelection(bookList.getCount() - 1);
+            }
+        });
     }
 
     @Override
@@ -164,22 +118,10 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
         switch (item.getItemId()) {
             case R.id.menu_refresh:
                 refresh();
-                break;
-            case R.id.menu_fav:
-                onWishlist();
-                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void onWishlist() {
-        Intent intent;
-        intent = new Intent(this, Favorite.class);
-
-        // Should be getting it from LogIn
-        String userEmail = "test@gmail.com";
-        intent.putExtra("user", userEmail);
-        startActivity(intent);
     }
 
     @Override
@@ -188,6 +130,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.main_menu, menu);
+        menu.findItem(R.id.menu_fav).setVisible(false);
 
         return true;
     }
