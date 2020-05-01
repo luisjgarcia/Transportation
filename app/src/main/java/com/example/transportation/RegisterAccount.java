@@ -20,7 +20,7 @@ public class RegisterAccount extends AppCompatActivity {
 
 
         btSetPassword.setOnClickListener((v)->{
-            Intent setPasswordIntent = new Intent(RegisterAccount.this, LoginScreen.class);
+            Intent setPasswordIntent = new Intent(this, LoginScreen.class);
             startActivity(setPasswordIntent);
             finish();
             //setResult(RESULT_OK, loginIntent);

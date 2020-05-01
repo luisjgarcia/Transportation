@@ -27,7 +27,7 @@ import java.util.List;
 public class Favorite extends AppCompatActivity {
 
 
-    private List<String>[] list = new List[10];
+    private List<String>[] list = new List[100];
     private ListView bookList;
     private int trueLength = 0;
 
@@ -38,7 +38,7 @@ public class Favorite extends AppCompatActivity {
 
         // btGet = findViewById(R.id.btGet);
         bookList = findViewById(R.id.bookList);
-
+        Log.d("log1","On Create Favorite ");
 
         signIn();
 
@@ -58,7 +58,7 @@ public class Favorite extends AppCompatActivity {
                         try{
                             Log.d("log1","from fav " + response.toString());
                             // Loop through the array elements
-                            for(int i = 0; i < response.length(); i++){
+                            for(int i = 0; i < response.length()-1; i++){
                                 // Get current json object
                                 JSONObject bookJSON = response.getJSONObject(i);
                                 List<String> book = new ArrayList<>();
@@ -90,7 +90,7 @@ public class Favorite extends AppCompatActivity {
 
         List<String> l1 = new ArrayList<>();
         // Filters: Display titles only
-        for(int i=0; i <trueLength; i++){
+        for(int i=0; i < trueLength; i++){
             l1.add(list[i].get(0));
         }
 

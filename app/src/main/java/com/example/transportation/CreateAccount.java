@@ -19,7 +19,7 @@ public class CreateAccount extends AppCompatActivity {
 
 
         btRegisterEmail.setOnClickListener((v)->{
-            Intent registerNewAcctIntent = new Intent(CreateAccount.this, RegisterAccount.class);
+            Intent registerNewAcctIntent = new Intent(this, RegisterAccount.class);
             startActivity(registerNewAcctIntent);
             finish();
             //setResult(RESULT_OK, loginIntent);

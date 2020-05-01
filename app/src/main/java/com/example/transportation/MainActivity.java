@@ -38,16 +38,11 @@ import java.util.UUID;
 
 public class MainActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
-    Button btGet;
-    TextView lbBook;
+
     String URL = "https://aqueous-island-97232.herokuapp.com/api/books/";
 
     private List<String>[] list = new List[100];
     private ListView bookList;
-
-    // For login/account activities
-    public static boolean isLoggedIn = false;
-    final int LOGIN_REQ = 1000;
 
 
     @Override
@@ -62,12 +57,13 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
         signIn();
 
 
-        // On the first pass, ensure that we are taken to the login page
-        if(!isLoggedIn) {
-            Intent loginReplyIntent = new Intent(MainActivity.this, LoginScreen.class);
-            startActivityForResult(loginReplyIntent, LOGIN_REQ);
-        }
+    }
 
+    @Override
+    public void onRestart(){
+        super.onRestart();
+
+        refresh();
 
     }
 

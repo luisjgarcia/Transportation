@@ -19,16 +19,19 @@ public class LoginScreen extends AppCompatActivity {
 
 
         btLogin.setOnClickListener((v)->{
-            Intent loginIntent = new Intent(LoginScreen.this, MainActivity.class);
-            setResult(RESULT_OK, loginIntent);
-            MainActivity.isLoggedIn = true;
-            finish();
+
+            // After validating change Activity
+            Intent intent;
+            intent = new Intent(this, MainActivity.class);
+            // Should send users input
+            //intent.putExtra();
+            startActivity(intent);
         });
 
 
 
         btForgotPassword.setOnClickListener((v)->{
-            Intent forgotPWIntent = new Intent(LoginScreen.this, ForgotPassword.class);
+            Intent forgotPWIntent = new Intent(this, ForgotPassword.class);
             startActivity(forgotPWIntent);
             //setResult(RESULT_OK, loginIntent);
             finish();
@@ -36,7 +39,7 @@ public class LoginScreen extends AppCompatActivity {
 
 
         btNewUser.setOnClickListener((v)->{
-            Intent newUserIntent = new Intent(LoginScreen.this, CreateAccount.class);
+            Intent newUserIntent = new Intent(this, CreateAccount.class);
             startActivity(newUserIntent);
             //setResult(RESULT_OK, loginIntent);
             finish();

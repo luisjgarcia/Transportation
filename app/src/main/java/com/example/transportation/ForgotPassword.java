@@ -17,7 +17,7 @@ public class ForgotPassword extends AppCompatActivity {
 
 
         btResetEmail.setOnClickListener((v)->{
-            Intent registerAcctIntent = new Intent(ForgotPassword.this, RegisterAccount.class);
+            Intent registerAcctIntent = new Intent(this, RegisterAccount.class);
             startActivity(registerAcctIntent);
             finish();
             //setResult(RESULT_OK, loginIntent);
