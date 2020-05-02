@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class RegisterAccount extends AppCompatActivity {
     Button btSetPassword;
+    EditText etEmail, etTempPW, etNewPW;
+    TextView errMsg;
+    final String SERVER_URL = "http://192.168.1.15:12345";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
