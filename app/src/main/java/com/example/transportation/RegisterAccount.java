@@ -22,15 +22,12 @@ public class RegisterAccount extends AppCompatActivity {
     Button btSetPassword;
     EditText etEmail, etTempPW, etNewPW;
     TextView tvErrorMsg;
-    String errorMsg;
     final String  SERVER_URL = "http://192.168.1.15:12345";
-    static int respCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_account);
-        //btSetPassword = findViewById(R.id.btSetPassword);
 
 
         btSetPassword = findViewById(R.id.btSetPassword);
@@ -68,18 +65,6 @@ public class RegisterAccount extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error){
                         tvErrorMsg.setText(Validator.getNetworkErrorMsg(error));
-
-                        /*NetworkResponse networkResponse = error.networkResponse;
-                        if (networkResponse != null && networkResponse.data != null) {
-                            String jsonError = new String(networkResponse.data);
-                            try{
-                                JSONObject reader = new JSONObject(jsonError);
-                                errorMsg = reader.getString("message");
-                            }
-                            catch (Exception e){}
-                            // Print Error!
-                            tvErrorMsg.setText(errorMsg);
-                        }*/
                     }
                 });
 

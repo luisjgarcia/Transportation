@@ -59,37 +59,6 @@ public class Validator {
 
 
 
-/*
-        public static boolean isExistingUser(EditText etEmail, String SERVER_URL, RequestQueue requestQueue) {
-            //final RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-            JSONObject jsonBody = new JSONObject();
-            try {
-                jsonBody.put("method", "forgotPassword");
-                jsonBody.put("email", etEmail.getText().toString());
-            } catch (Exception e) { }
-
-            JsonObjectRequest jsonPostRequest = new JsonObjectRequest(Request.Method.POST,
-                    SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
-                @Override
-                public void onResponse(JSONObject response) {
-                    Validator.isValidResponse = true;
-                }
-            }, new Response.ErrorListener(){
-                @Override
-                public void onErrorResponse(VolleyError error){
-                    Validator.isValidResponse = false;
-                }
-            });
-
-
-            requestQueue.add(jsonPostRequest);
-
-            return Validator.isValidResponse;
-        }*/
-
-
-
 
 
 

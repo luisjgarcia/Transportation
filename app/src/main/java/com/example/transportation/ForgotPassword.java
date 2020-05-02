@@ -36,15 +36,7 @@ public class ForgotPassword extends AppCompatActivity {
             final RequestQueue requestQueue = Volley.newRequestQueue(this);
 
             if(Validator.hasInput(etEmail) && Validator.isEmailAddress(etEmail)) {
-              /*  if(Validator.isExistingUser(etEmail, SERVER_URL, requestQueue)){
-                    Intent registerAcctIntent = new Intent(this, RegisterAccount.class);
-                    startActivity(registerAcctIntent);
-                    finish();
-                }
-                else{
-                    tvErrorMsg.setText("User does not exist! Create an account.");
-                    etEmail.setText("");
-                }*/
+
 
                 JSONObject jsonBody = new JSONObject();
                 try {
