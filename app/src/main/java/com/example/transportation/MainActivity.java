@@ -38,6 +38,7 @@ import java.util.UUID;
 
 public class MainActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener{
     public static String current_user; // To hold on to the current user's authentication token
+    public static String userEmail; // To hold on to the current user's email address
 
 
     String URL = "https://aqueous-island-97232.herokuapp.com/api/books/";
@@ -150,7 +151,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
         extras.putString("img",list[position].get(4));
 
         // We should be getting it from LogIn intent
-        extras.putString("user", "test@gmail.com");
+        extras.putString("user", userEmail);
 
 
 
@@ -182,7 +183,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
         intent = new Intent(this, Favorite.class);
 
         // Should be getting it from LogIn
-        String userEmail = "test@gmail.com";
+        //String userEmail = "test@gmail.com"; // added a static variable to top of this class
         intent.putExtra("user", userEmail);
         startActivity(intent);
     }

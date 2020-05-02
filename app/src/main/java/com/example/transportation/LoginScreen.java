@@ -63,6 +63,7 @@ public class LoginScreen extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try{  // pass resulting token to the main activity
                             MainActivity.current_user = response.getString("token");
+                            MainActivity.userEmail = etLoginEmail.getText().toString();
                         }
                         catch (Exception e){}
                         Intent loginIntent = new Intent(LoginScreen.this, MainActivity.class);
