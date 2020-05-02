@@ -24,7 +24,7 @@
     <TextView
         android:id="@+id/tvErrorMsg"
         android:layout_width="230dp"
-        android:layout_height="86dp"
+        android:layout_height="78dp"
         android:text="Some error message"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"

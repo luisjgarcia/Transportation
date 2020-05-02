@@ -38,9 +38,6 @@ public class CreateAccount extends AppCompatActivity {
 
         btCreateUser.setOnClickListener((v)->{
 
-
-
-
             boolean isValidEmail = Validator.hasInput(etEmail) && Validator.isEmailAddress(etEmail);
             final RequestQueue requestQueue = Volley.newRequestQueue(this);
 

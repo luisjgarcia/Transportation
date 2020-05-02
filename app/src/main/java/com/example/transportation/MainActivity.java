@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener{
+    public static String current_user; // To hold on to the current user's authentication token
 
 
     String URL = "https://aqueous-island-97232.herokuapp.com/api/books/";
