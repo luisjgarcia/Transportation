@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 public class Validator {
     //public static class LoginValidator{
+    public static int respCode; // response codes
     public static boolean isValidResponse ;//= true;
 
         public static boolean hasInput(EditText et){
@@ -34,9 +36,31 @@ public class Validator {
             return false;
         }
 
+
+
+
+        public static String getNetworkErrorMsg(VolleyError error){
+            String errorMsg = "";
+            NetworkResponse networkResponse = error.networkResponse;
+
+            if (networkResponse != null && networkResponse.data != null) {
+                String jsonError = new String(networkResponse.data);
+                try{
+                    JSONObject reader = new JSONObject(jsonError);
+                    errorMsg = reader.getString("message");
+                }
+                catch (Exception e){}
+
+            }
+            return errorMsg;
+        }
+
+
+
+
+
+/*
         public static boolean isExistingUser(EditText etEmail, String SERVER_URL, RequestQueue requestQueue) {
-
-
             //final RequestQueue requestQueue = Volley.newRequestQueue(this);
 
             JSONObject jsonBody = new JSONObject();
@@ -62,7 +86,11 @@ public class Validator {
             requestQueue.add(jsonPostRequest);
 
             return Validator.isValidResponse;
-        }
+        }*/
+
+
+
+
 
 
    // }
