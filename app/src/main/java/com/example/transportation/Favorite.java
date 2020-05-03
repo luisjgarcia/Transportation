@@ -58,7 +58,7 @@ public class Favorite extends AppCompatActivity {
                         try{
                             Log.d("log1","from fav " + response.toString());
                             // Loop through the array elements
-                            for(int i = 0; i < response.length()-1; i++){
+                            for(int i = 0; i < response.length(); i++){
                                 // Get current json object
                                 JSONObject bookJSON = response.getJSONObject(i);
                                 List<String> book = new ArrayList<>();

@@ -21,7 +21,7 @@ public class CreateAccount extends AppCompatActivity {
     Button btCreateUser;
     EditText etEmail, etFName, etLName;
     TextView tvCreateError;
-    final String  SERVER_URL = "http://192.168.1.15:12345";
+    final String  SERVER_URL = "http://192.168.86.99:12345";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

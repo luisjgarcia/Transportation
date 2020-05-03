@@ -22,7 +22,7 @@ public class LoginScreen extends AppCompatActivity {
     TextView tvLoginScreenError;
     EditText etLoginPassword, etLoginEmail;
 
-    final String  SERVER_URL = "http://192.168.1.15:12345";
+    final String  SERVER_URL = "http://192.168.86.99:12345";
 
 
     @Override
@@ -65,8 +65,11 @@ public class LoginScreen extends AppCompatActivity {
                             MainActivity.current_user = response.getString("token");
                             MainActivity.userEmail = etLoginEmail.getText().toString();
                         }
-                        catch (Exception e){}
+                        catch (Exception e){
+
+                        }
                         Intent loginIntent = new Intent(LoginScreen.this, MainActivity.class);
+                        loginIntent.putExtra("user", etLoginEmail.getText().toString());
                         startActivity(loginIntent);
                         finish();
                     }

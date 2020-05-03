@@ -54,6 +54,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
         // btGet = findViewById(R.id.btGet);
         bookList = findViewById(R.id.bookList);
+        userEmail = getIntent().getStringExtra("user");
 
         // Get all the books
         signIn();
@@ -155,7 +156,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
 
 
-        Log.d("log1", "Passed ... "+ extras.toString());
+        Log.d("log1", "Passed ... "+ userEmail);
         Intent intent;
         intent = new Intent(this, BookView.class);
         intent.putExtras(extras);
