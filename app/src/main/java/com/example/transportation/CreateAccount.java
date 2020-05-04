@@ -21,7 +21,7 @@ public class CreateAccount extends AppCompatActivity {
     Button btCreateUser;
     EditText etEmail, etFName, etLName;
     TextView tvCreateError;
-    final String  SERVER_URL = "http://192.168.86.99:12345";
+    //final String  SERVER_URL = "http://192.168.86.99:12345";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class CreateAccount extends AppCompatActivity {
                 } catch (Exception e) { }
 
                 JsonObjectRequest jsonPostRequest = new JsonObjectRequest(Request.Method.POST,
-                        SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
+                        LoginScreen.SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
                         Intent createUserIntent = new Intent(CreateAccount.this, RegisterAccount.class);
@@ -82,45 +82,11 @@ public class CreateAccount extends AppCompatActivity {
 
 
 
-
-
-
-            ////////////////
-            /*
-            Intent setPasswordIntent = new Intent(this, LoginScreen.class);
-            startActivity(setPasswordIntent);
-            finish();
-            */
-            /////////////////
-
-            //setResult(RESULT_OK, loginIntent);
-            //MainActivity.isLoggedIn = true;
-            //finish();
         });
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-            Intent registerNewAcctIntent = new Intent(this, RegisterAccount.class);
-            startActivity(registerNewAcctIntent);
-            finish();*/
-            //setResult(RESULT_OK, loginIntent);
-            //MainActivity.isLoggedIn = true;
-            //finish();
 
 
     }

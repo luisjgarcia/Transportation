@@ -22,7 +22,8 @@ public class LoginScreen extends AppCompatActivity {
     TextView tvLoginScreenError;
     EditText etLoginPassword, etLoginEmail;
 
-    final String  SERVER_URL = "http://192.168.86.99:12345";
+    // public static final String SERVER_URL = "http://192.168.86.99:12345"; // Luis's server
+    public static final String SERVER_URL = "http://192.168.1.15:12345";   // Marisha's server
 
 
     @Override
