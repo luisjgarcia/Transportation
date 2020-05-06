@@ -22,7 +22,7 @@ public class RegisterAccount extends AppCompatActivity {
     Button btSetPassword;
     EditText etEmail, etTempPW, etNewPW;
     TextView tvErrorMsg;
-    final String  SERVER_URL = "http://192.168.86.99:12345";
+    //final String  SERVER_URL = "http://192.168.86.99:12345";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class RegisterAccount extends AppCompatActivity {
                 } catch (Exception e) { }
 
                 JsonObjectRequest jsonPostRequest = new JsonObjectRequest(Request.Method.POST,
-                        SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
+                        LoginScreen.SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
                     Intent setPasswordIntent = new Intent(RegisterAccount.this, LoginScreen.class);

@@ -21,7 +21,7 @@ public class ForgotPassword extends AppCompatActivity {
     Button btResetEmail;
     EditText etEmail;
     TextView tvErrorMsg;
-    final String SERVER_URL = "http://192.168.86.99:12345";
+    //final String SERVER_URL = "http://192.168.86.99:12345";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class ForgotPassword extends AppCompatActivity {
                 } catch (Exception e) { }
 
                 JsonObjectRequest jsonPostRequest = new JsonObjectRequest(Request.Method.POST,
-                        SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
+                        LoginScreen.SERVER_URL, jsonBody, new Response.Listener<JSONObject>(){
                     @Override
                     public void onResponse(JSONObject response) {
                         Intent registerAcctIntent = new Intent(ForgotPassword.this, RegisterAccount.class);
