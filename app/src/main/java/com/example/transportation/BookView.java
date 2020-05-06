@@ -97,6 +97,7 @@ public class BookView extends AppCompatActivity {
     public void clickBack(View view) {
         Intent intent;
         intent = new Intent(this, MainActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 }

@@ -30,6 +30,7 @@ public class Favorite extends AppCompatActivity {
     private List<String>[] list = new List[100];
     private ListView bookList;
     private int trueLength = 0;
+    String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,27 @@ public class Favorite extends AppCompatActivity {
 
         // btGet = findViewById(R.id.btGet);
         bookList = findViewById(R.id.bookList);
-        Log.d("log1","On Create Favorite ");
+        Log.d("log1","onCreate() ");
 
+        userEmail = getIntent().getStringExtra("user");
+
+
+    }
+
+    @Override
+    public void onResume (){
+        super.onResume();
+
+        Log.d("log1","onResume()  ");
+        signIn();
+
+    }
+
+    @Override
+    public void onRestart (){
+        super.onRestart();
+
+        Log.d("log1","onRestart()  ");
         signIn();
 
     }
@@ -47,7 +67,7 @@ public class Favorite extends AppCompatActivity {
     public void signIn() {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        String URL = "https://aqueous-island-97232.herokuapp.com/api/wishlist/" + getIntent().getStringExtra("user");
+        String URL = "https://aqueous-island-97232.herokuapp.com/api/wishlist/" + userEmail;
 
         // Get me all the books
         JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, URL, null,
@@ -55,8 +75,9 @@ public class Favorite extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         // Process the JSON
+                        trueLength  = 0;
                         try{
-                            Log.d("log1","from fav " + response.toString());
+                            Log.d("log1","from fav, email:  " + userEmail + response.toString());
                             // Loop through the array elements
                             for(int i = 0; i < response.length(); i++){
                                 // Get current json object

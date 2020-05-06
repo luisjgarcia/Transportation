@@ -185,7 +185,7 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
         // Should be getting it from LogIn
         //String userEmail = "test@gmail.com"; // added a static variable to top of this class
-        intent.putExtra("user", userEmail);
+        intent.putExtra("user", getIntent().getStringExtra("user"));
         startActivity(intent);
     }
 
