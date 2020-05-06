@@ -37,7 +37,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public class MainActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener{
-    public static String current_user; // To hold on to the current user's authentication token
+    public static String current_token; // To hold on to the current user's authentication token
     public static String userEmail; // To hold on to the current user's email address
 
 
@@ -58,6 +58,15 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
 
         // Get all the books
         signIn();
+
+        // TODO: update/delete this section!!!
+        Button btDisplayInfo = findViewById(R.id.btDisplayInfo);
+        btDisplayInfo.setOnClickListener((v)-> {
+                    Intent displayInfoIntent = new Intent(MainActivity.this, DisplayUserInfo.class);
+                    startActivity(displayInfoIntent);
+                    finish();
+        });
+       // TODO: end section to update/delete
 
 
     }

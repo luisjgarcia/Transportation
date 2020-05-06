@@ -63,7 +63,7 @@ public class LoginScreen extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try{  // pass resulting token to the main activity
-                            MainActivity.current_user = response.getString("token");
+                            MainActivity.current_token = response.getString("token");
                             MainActivity.userEmail = etLoginEmail.getText().toString();
                         }
                         catch (Exception e){
