@@ -89,7 +89,7 @@ public class BookView extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonRequest);
 
 
-        message.setText("Added to your wishlist");
+        message.setText("Added");// to your wishlist");
         btWishList.setEnabled(false);
 
     }
