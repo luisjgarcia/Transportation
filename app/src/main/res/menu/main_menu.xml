@@ -12,5 +12,9 @@
         android:id="@+id/menu_fav"
         compat:showAsAction="ifRoom"
         android:title="@string/menu_fav" />
+    <item
+        android:id="@+id/menu_signOut"
+        compat:showAsAction="ifRoom"
+        android:title="Sign Out" />
 
 </menu>

@@ -2,6 +2,7 @@ package com.example.transportation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -139,10 +140,17 @@ public class Favorite extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
                 refresh();
+                break;
+            case R.id.menu_signOut:
+                Intent intent;
+                intent = new Intent(this, LoginScreen.class);
+                startActivity(intent);
+                break;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

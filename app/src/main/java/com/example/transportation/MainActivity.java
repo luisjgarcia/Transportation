@@ -175,6 +175,11 @@ public class MainActivity  extends AppCompatActivity implements AdapterView.OnIt
             case R.id.menu_fav:
                 onWishlist();
                 break;
+            case R.id.menu_signOut:
+                Intent intent;
+                intent = new Intent(this, LoginScreen.class);
+                startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
